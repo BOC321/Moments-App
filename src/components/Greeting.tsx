@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import type { StuckPoint, Prompt } from '../types';
+import React, { useState } from 'react';
+import type { ActiveSession } from '../types';
 
 interface SessionScreenProps {
-  stuckPoint: StuckPoint;
+  session: ActiveSession;
   onSessionComplete: (reflectionText: string | null) => void;
 }
 
@@ -12,7 +12,7 @@ type SessionStep =
   | { type: 'outro' }
   | { type: 'reflection' };
 
-const SessionScreen: React.FC<SessionScreenProps> = ({ stuckPoint, onSessionComplete }) => {
+const SessionScreen: React.FC<SessionScreenProps> = ({ session, onSessionComplete }) => {
   const [step, setStep] = useState<SessionStep>({ type: 'intro' });
   const [reflectionText, setReflectionText] = useState('');
 
@@ -20,7 +20,7 @@ const SessionScreen: React.FC<SessionScreenProps> = ({ stuckPoint, onSessionComp
     if (step.type === 'intro') {
       setStep({ type: 'prompt', index: 0 });
     } else if (step.type === 'prompt') {
-      if (step.index < stuckPoint.session.prompts.length - 1) {
+      if (step.index < session.prompts.length - 1) {
         setStep({ type: 'prompt', index: step.index + 1 });
       } else {
         setStep({ type: 'outro' });
@@ -41,12 +41,12 @@ const SessionScreen: React.FC<SessionScreenProps> = ({ stuckPoint, onSessionComp
   const renderContent = () => {
     switch (step.type) {
       case 'intro':
-        return <StepView key="intro" title="Let's Begin" text={stuckPoint.session.intro} buttonText="Start" onNext={nextStep} />;
+        return <StepView key="intro" title="Let's Begin" text={session.intro} buttonText="Start" onNext={nextStep} />;
       case 'prompt':
-        const prompt = stuckPoint.session.prompts[step.index];
-        return <StepView key={`prompt-${step.index}`} title={prompt.title} text={prompt.text} buttonText="Next" onNext={nextStep} isTimed={true} durationMinutes={prompt.duration} />;
+        const prompt = session.prompts[step.index];
+        return <StepView key={`prompt-${step.index}`} title={prompt.title} text={prompt.text} buttonText="Next" onNext={nextStep} />;
       case 'outro':
-        return <StepView key="outro" title="Session Complete" text={stuckPoint.session.outro} buttonText="Capture Thoughts" onNext={nextStep} />;
+        return <StepView key="outro" title="Session Complete" text={session.outro} buttonText="Capture Thoughts" onNext={nextStep} />;
       case 'reflection':
         return (
           <div className="flex flex-col h-full text-center animate-fade-in">
@@ -77,39 +77,12 @@ interface StepViewProps {
   text: string;
   buttonText: string;
   onNext: () => void;
-  isTimed?: boolean;
-  durationMinutes?: number;
 }
-const StepView: React.FC<StepViewProps> = ({ title, text, buttonText, onNext, isTimed = false, durationMinutes = 0 }) => {
-  const [timeLeft, setTimeLeft] = useState(durationMinutes * 60);
-
-  useEffect(() => {
-    if (!isTimed) return;
-
-    if (timeLeft <= 0) {
-      // Optional: auto-advance when timer ends
-      // onNext();
-      return;
-    }
-
-    const timerId = setInterval(() => {
-      setTimeLeft(prev => prev - 1);
-    }, 1000);
-
-    return () => clearInterval(timerId);
-  }, [isTimed, timeLeft, onNext]);
-
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-  };
-
+const StepView: React.FC<StepViewProps> = ({ title, text, buttonText, onNext }) => {
   return (
     <div className="flex flex-col h-full text-center animate-fade-in justify-between">
         <div>
             <h2 className="text-2xl font-bold text-white mb-2">{title}</h2>
-            {isTimed && <p className="text-4xl font-mono text-white mb-8">{formatTime(timeLeft)}</p>}
         </div>
         <p className="text-xl md:text-2xl text-gray-300 my-auto">{text}</p>
         <button onClick={onNext} className="w-full py-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors mt-8">

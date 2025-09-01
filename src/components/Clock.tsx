@@ -12,7 +12,9 @@ const titleMap: { [key: string]: React.ReactNode } = {
   'Mental Fog': <>Mental<br/>Fog</>,
   'Too Many Options': <>Too Many<br/>Options</>,
   'Stuck at the Start': <>Stuck at the<br/>Start</>,
-  'I\'ve Lost Momentum': 'I\'ve Lost Momentum'
+  "I've Lost Momentum": "I've Lost Momentum",
+  "I'm in Unfamiliar Territory": <>Unfamiliar<br/>Territory</>,
+  "Need to Think Strategically": <>Think<br/>Strategically</>
 };
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectStuckPoint, stuckPoints, weeklyCompletions }) => {
@@ -35,7 +37,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onSelectStuckPoint, stuckPoints
               flex items-center p-4 rounded-2xl shadow-lg text-white
               transition-all duration-200 ease-in-out transform hover:scale-105 hover:bg-white/20
               bg-white/10 border border-white/20 backdrop-blur-sm
-              ${index === stuckPoints.length - 1 ? 'col-span-2' : ''}
+              ${index === stuckPoints.length - 1 && stuckPoints.length % 2 !== 0 ? 'col-span-2' : ''}
             `}
           >
             <i className={`${sp.icon} text-white text-2xl w-8 text-center`}></i>
