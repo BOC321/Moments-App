@@ -1,0 +1,275 @@
+?? Momentum Moments – Developer Specification (Pilot App)
+Prepared for: Product Developer / No-Code Builder
+Prepared by: Kate Christiansen
+App version: MVP v1.0
+Core purpose: Deliver guided, 10-minute structured thinking sessions that help users get mentally unstuck and regain cognitive momentum.
+
+?? 1. User goals
+Users will:
+* Open the app when they feel mentally stuck
+* Choose what kind of “stuckness” they’re experiencing
+* Be guided through a 10-minute thinking sequence (3 structured prompts)
+* Optionally capture a thought or insight
+* Leave feeling clearer, calmer, or more energised
+
+?? 2. Key features for MVP
+? A. Home screen
+* Welcome message: “Welcome. What’s keeping you stuck today?”
+* Display a list of “Stuck Point” categories as buttons or tiles
+* Categories (sample 5 for MVP):
+1. Decision Paralysis
+2. Mental Fog
+3. Too Many Options
+4. Stuck at the Start
+5. I’ve Lost Momentum
+6. I’m in Unfamiliar Territory
+7. Need to Think Strategically
+Each button links to a unique Momentum Moment session.
+
+? B. Session screen (Momentum Moment flow)
+Each Momentum Moment includes:
+1. Intro framing
+* ~30-second text (optional audio later)
+* E.g. “You don’t need to solve it. You just need to shift your thinking.”
+2. Prompt 1 – Entry
+* Text-based prompt to open reflection (e.g. “What feels foggy right now—but matters?”)
+* Displayed for ~2–3 minutes (optionally with timer)
+3. Prompt 2 – Unblocker
+* A deeper or challenging prompt (e.g. “What’s the real question I’m avoiding?”)
+* Displayed for ~2–3 minutes
+4. Prompt 3 – Momentum
+* A forward-shifting prompt (e.g. “If I don’t need to fix this, what can I do instead?”)
+* Displayed for ~2–3 minutes
+5. Session close
+* Message: “You’ve just made space to think. That matters.”
+Optional: Users can tap “Next” to move between prompts or stay timed.
+
+? C. Optional reflection capture
+After the third prompt:
+* Option to jot a quick note (text field)
+* Option to record a short voice memo (optional for V1)
+* Data can be saved locally or to user profile if signed in
+
+? D. Streak counter (encouragement only)
+* Lightweight, non-pushy
+* E.g. “You’ve completed 2 Momentum Moments this week”
+* Based on session completion count per user
+
+? E. About screen
+* Explanation of what a Momentum Moment is
+* Brief intro to Kate + The Moment Method (1 paragraph)
+* Optional CTA to learn more (links to website/book)
+
+?? 3. App structure (navigation map)
+HOME
+?
+??? STUCK POINT SELECTOR (Category list)
+?     ??? Decision Paralysis
+?     ??? Mental Fog
+?     ??? ... etc
+?
+??? MOMENT SESSION FLOW (for each category)
+?     ??? Intro framing
+?     ??? Prompt 1
+?     ??? Prompt 2
+?     ??? Prompt 3
+?     ??? Close + optional reflection
+?
+??? REFLECTION PAGE
+?     ??? Text note (input)
+?     ??? [Optional] Voice memo
+?
+??? STREAK TRACKER (visible on Home)
+?
+??? ABOUT / INFO PAGE
+
+?? 4. Technical requirements
+Platform
+* MVP via Glide or Adalo (no-code)
+o Supports mobile web and PWA app
+o Supports text/audio flows
+o Optional: login for reflection history
+Data storage
+* Google Sheets / Glide Tables / Adalo internal DB
+* Track sessions completed per user (simple count)
+* Store reflections per user (text or voice, optional)
+Optional features (future)
+* Audio playback for each prompt
+* AI-powered prompt recommendation
+* Deeper streak analytics / visual charts
+* Integration with The Answer Trap Risk Profile
+
+?? 5. Content requirements (provided by Kate)
+* 7  “Stuck Point” categories with 3 prompts each
+* Intro and closing messages for each session
+* About section text
+* Tone of voice: calm, thoughtful, encouraging, non-prescriptive
+* Design aesthetic: light, spacious, soothing tones (e.g. navy, teal, soft neutral backgrounds)
+
+?? 6. User testing plan (Phase 1)
+* 10–25 test users from Kate’s audience (e.g. Risk Profile completers)
+* Pilot over 2 weeks
+* Track:
+o Completion rate of sessions
+o Repeat usage
+o Feedback on usefulness, clarity, flow
+* Feedback captured via Typeform or in-app form
+
+?? 7. 
+* Add full prompt library (20+ Momentum Moments)
+* Audio narration for prompts
+* Paid subscription model ($4.99/month)
+* Optional org/team version
+* Dashboard for user stats & trends
+* Deeper integration with The Answer Trap ecosystem
+
+?? 8. Next steps for developer or builder
+1. Create screen layouts per navigation map
+2. Load initial content (7 categories, 3 prompts each)
+3. Build session logic + optional note field
+4. Add streak counter (based on session completions)
+5. Set up lightweight user feedback capture
+6. Deploy private pilot for closed testing
+
+
+?? First: What’s the purpose of this app?
+* Not to give advice
+* Not to solve problems
+* Not to simulate a conversation
+It’s to:
+? Create space
+? Provide structure
+? Prompt clarity
+? Help people re-engage their own thinking
+
+?? Option 1: Library-based model
+(Static prompts curated and organised into categories)
+? Pros:
+* You stay in control of quality, tone and depth
+* Strong alignment with your IP (e.g. The Moment Method)
+* Scalable without introducing risk of off-brand responses
+* Predictable emotional tone (no surprise outputs or awkward wording)
+* Easier to build, test and refine
+* Feels intentional and crafted, not random
+
+?? What would Kate’s audience value?
+Given your audience:
+* High-performing, often overloaded
+* Already sceptical of quick fixes or vague content
+* Trust you for clarity, calm and cognitive credibility
+They’re likely to respond better to:
+? Beautifully crafted questions delivered with intention—not AI improvisation.
+
+?? Strategic recommendation
+? Start with a library model.
+Let you and your method be the guide.
+The experience should feel:
+* Trusted
+* Crafted
+* Quiet
+* Valuable by design
+You can always introduce AI later as a “smart guide” feature—for example:
+* A “personal clarity concierge” that recommends the next best Moment
+* A prompt builder for advanced users (“Customise your own session”)
+* A summariser that reflects back key patterns in their entries
+But that should come after you've established the core experience, tone, and user habits.
+
+?? Your brand power is not that it’s tech-enabled.
+It’s that it enables the human brain to function better in a complex world.
+AI could become part of the infrastructure.
+But you are the author of the Moment. And that’s the power of this app
+New additions as of 1st Sep 2025.
+Developer brief: “Thinking Tracker” feature (like a cognitive Fitbit)
+
+ Feature purpose
+
+To help users build a visible, motivating habit of deliberate thinking — not by tracking streaks or gamifying behaviour, but by acknowledging and accumulating time spent in intentional reflection. This aligns with The Answer Trap ethos: reclaiming your mind, one small moment at a time.
+
+
+---
+
+ Key Components
+
+1. Goal Setting (Optional)
+
+Users can set a personal target (e.g. “30 minutes of thinking this week”)
+
+Selectable options: daily, weekly, or monthly
+
+Default could be: “No goal set yet – start tracking time when ready”
+
+
+2. Session Time Logging
+
+Each session logs the total reflection time:
+
+Default = 10 min (3 prompts × ~3 min each)
+
+OR actual time if timer/tracker is used
+Take out the current timer in the Prompts
+
+
+Add a setting toggle: “Log full session time” vs “Track actual time spent on each prompt”
+
+
+3. Visual Dashboard
+
+Display total time spent:
+
+Today
+
+This week
+
+This month
+
+All time
+
+
+Could be a clean horizontal bar (like progress toward daily goal)
+
+Optional: Add icons like a thinking bubble or brain spark
+
+
+4. “Thinking Milestones”
+
+Optional, light acknowledgment (not gamified badges):
+
+“You’ve crossed 60 minutes of deliberate thinking!”
+
+“5 days of clarity”
+
+“You’ve paused to think 10 times this month”
+
+
+Phrased in your tone: affirming, not performative
+
+
+5. Settings & Privacy
+
+All tracking is local (or tied to a private profile if logged in)
+
+Option to delete, reset, or export data
+
+Settings toggle: “Track time” on/off
+
+
+
+---
+
+Tone of voice for messaging
+
+Keep it warm, quiet, and agency-affirming. Examples:
+
+“You’ve created 12 minutes of space to think today.”
+
+“Clarity doesn’t need hours — 3 minutes counts.”
+
+“You’ve paused 5 times this week. That’s leadership.”
+
+
+
+Heatmap or calendar view: “Which days did I create space to think?”
+
+Personal insights: “You reflect most on Fridays” or “You’ve explored Mental Fog most this month”
+
+Integration with other features: “This Stuck Point contributed 42 mins of thinking this month”
